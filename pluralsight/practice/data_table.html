@@ -1,0 +1,77 @@
+<html ng-app="mainApp" >
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+</head>
+<body ng-controller="studentController">
+
+<div >
+    <table border = "0">
+        <tr>
+            <td>Enter first name:</td>
+            <td><input type = "text" ng-model = "student.firstName"></td>
+        </tr>
+
+        <tr>
+            <td>Enter last name: </td>
+            <td>
+                <input type = "text" ng-model = "student.lastName">
+            </td>
+        </tr>
+
+        <tr>
+            <td>Name: </td>
+            <td>{{student.fullName()}}</td>
+        </tr>
+
+        <tr>
+            <td>Subject:</td>
+
+            <td>
+                <table>
+                    <tr>
+                        <th>Name</th>.
+                        <th>Marks</th>
+                    </tr>
+                    <tr ng-repeat="subject in student.subjects">
+                        <td>{{ subject.name }}</td>
+                        <td>{{ subject.marks }}</td>
+                    </tr>
+
+                </table>
+            </td>
+
+        </tr>
+    </table>
+
+</div>
+
+<script>
+    var mainApp = angular.module("mainApp" , []);
+
+    mainApp.controller('studentController' , function ($scope) {
+            $scope.student = {
+                firstName: "Mahesh",
+                lastName: "Parashar",
+                fees:500,
+                subjects: [
+                    {name:'Physics',marks:70},
+                    {name:'Chemistry',marks:80},
+                    {name:'Math',marks:65},
+                    {name:'English',marks:75},
+                    {name:'Hindi',marks:67}
+
+,                ],
+                fullname : function () {
+                    var studentObj = $scope.student;
+                    return studentObj.firstName + "" + studentObj.lastName;
+                }
+            }
+
+    })
+
+
+</script>
+
+</body>
+</html>

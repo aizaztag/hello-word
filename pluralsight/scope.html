@@ -1,0 +1,40 @@
+<html  ng-app="mainApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+</head>
+<body >
+
+<div ng-controller="MainController">
+  <p>{{message}} <br/> {{type}} </p>
+
+    <div ng-controller="ChildController">
+      <p>{{message}} <br/> {{type}} </p>
+   </div>
+
+
+    <div ng-controller="ChildController2">
+      <p>{{message}} <br/> {{type}} </p>
+
+    </div>
+</div>
+
+<script>
+    var app = angular.module('mainApp', []);
+    app.controller('MainController' , function($scope){
+         $scope.message =  'Main';
+         $scope.type = "Shape";
+    });
+
+    app.controller('ChildController' , function($scope){
+         $scope.message =  'Child';
+    });
+
+    app.controller('ChildController2' , function($scope){
+         $scope.message =  'Chi2';
+         $scope.type = "Shape";
+    });
+</script>
+
+</body>
+</html>

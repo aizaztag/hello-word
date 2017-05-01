@@ -1,0 +1,57 @@
+
+<html  ng-app="mainApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+</head>
+<body >
+
+  <div ng-app = "mainApp" ng-controller = "CalcController">
+     <p>Enter a number: <input type = "number" ng-model = "number" /></p>
+
+     <button ng-click = "square()">X<sup>2</sup></button>
+     <button ng-click = "cube()">X<sup>3</sup></button>
+
+     <p>sqaure: {{result}}</p>
+     <p>Cube: {{result2}}</p>
+  </div>
+
+<script>
+    var mainApp = angular.module('mainApp', []);
+
+    mainApp.factory ('MathService' , function(){
+            var factory = {};
+            factory.multiply = function(a , b){
+              return a *  b;
+            }
+
+            factory.moreply = function(a,b,c){
+              return a * b * c;
+            }
+            return factory;
+
+    });
+
+    mainApp.service('callService' , function(MathService){
+      this.sqaure = function(a){
+          return MathService.multiply(a,a);
+      }
+      this.cube = function(a){
+        return MathService.moreply(a,a,a);
+      }
+    }) ;
+
+    mainApp.controller('CalcController' , function($scope , callService){
+       $scope.square = function(){
+         $scope.result = callService.sqaure($scope.number)
+         $scope.result2 = callService.cube($scope.number)
+       }
+
+       $scope.cube = function(){
+         $scope.result2 = callService.cube($scope.number)
+       }
+    });
+</script>
+
+</body>
+</html>
